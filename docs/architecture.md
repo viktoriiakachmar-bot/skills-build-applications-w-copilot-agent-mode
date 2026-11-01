@@ -1,14 +1,9 @@
-Read 
-Completed with input: {
-  "path": "/workspaces/skills-build-applications-w-copilot-agent-mode/docs/architecture.md"
-}
-
 # Architecture Summary & Test Plan
 
 ## Tier Boundaries
 - Presentation tier: React UI application located in `octofit-tracker/frontend` running on port 5173
 - Logic tier: Express API service located in `octofit-tracker/backend` running on port 8000
-- Data tier: Database and seed integration
+- Data tier: Database and seed integration running on port 27017
 
 ## Current Failing Tests
 - Baseline test failure in user activity logging endpoint
