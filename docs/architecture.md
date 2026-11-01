@@ -47,3 +47,10 @@ Record the commands you run and what each failure means.
 - Frontend command: `npm test --prefix octofit-tracker/frontend`
 - Backend build command: `npm run build --prefix octofit-tracker/backend`
 - Frontend build command: `npm run build --prefix octofit-tracker/frontend`
+Найменший безпечний порядок
+
+Спершу заповнити рішення в architecture.md, як вимагає сам документ; зафіксувати API-контракт і межі рівнів.
+Виправити моделі й seed; перевірити test:data.
+Реалізувати service/routes для створення та читання активностей і команд, leaderboard та workout suggestions; перевірити test:api.
+Під’єднати чотири frontend-компоненти до спільного клієнта, додати потрібні loading/empty/error стани; перевірити frontend-тести.
+Наприкінці запустити backend і frontend build-команди з плану тестування.
