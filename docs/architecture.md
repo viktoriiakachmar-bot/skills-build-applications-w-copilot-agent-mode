@@ -11,9 +11,10 @@
 - Workout suggestions approach: Add logic to generate personalized Workout suggestions.
 - Leaderboard approach: Implement logic to calculate and display the Leaderboard.
 
-## Current Failing Tests
+## Test plan
 - Baseline test failure in Activity tracking endpoint.
 - Database seed integration test failure.
+- Run the data tests using the following command: `npm run test:data --prefix octofit-tracker/backend`
 
 ## Smallest Safe Implementation Order
 1. Update the activity data model and seed script; validate the seed integration test.
