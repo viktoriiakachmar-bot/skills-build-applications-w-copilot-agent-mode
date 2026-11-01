@@ -7,7 +7,7 @@ Completed with input: {
 
 ## Tier Boundaries
 - Presentation tier: React UI application located in `octofit-tracker/frontend`
-- Logic tier: Express API service located in `octofit-tracker/backend`
+- Logic tier: Express API service located in `octofit-tracker/backend` running on port 8000
 - Data tier: Database and seed integration
 
 ## Current Failing Tests
