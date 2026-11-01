@@ -2,7 +2,7 @@
 
 ## Tier Boundaries
 - Presentation tier decision: React UI application in `octofit-tracker/frontend` running on port 5173
-- Logic tier decision: Express API service in `octofit-tracker/backend` running on port 8080
+- Logic tier decision: Express API service in `octofit-tracker/backend` running on port 8000
 - Data tier decision: Database and seed integration running on port 27017
 
 ## Feature Approaches
