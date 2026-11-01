@@ -1,9 +1,9 @@
 # Architecture Summary & Test Plan
 
 ## Tier Boundaries
-- Presentation tier: React UI application located in `octofit-tracker/frontend` running on port 5173
-- Logic tier: Express API service located in `octofit-tracker/backend` running on port 8000
-- Data tier: Database and seed integration running on port 27017
+- Presentation tier decision: React UI application in `octofit-tracker/frontend` running on port 5173
+- Logic tier decision: Express API service in `octofit-tracker/backend` running on port 8000
+- Data tier decision: Database and seed integration running on port 27017
 
 ## Current Failing Tests
 - Baseline test failure in Activity tracking endpoint
