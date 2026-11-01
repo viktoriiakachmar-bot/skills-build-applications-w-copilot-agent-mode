@@ -6,12 +6,12 @@ Completed with input: {
 # Architecture Summary & Test Plan
 
 ## Tier Boundaries
-- Frontend: React UI in `octofit-tracker/frontend`
-- Backend: Express API in `octofit-tracker/backend`
+- Presentation tier: React UI application located in `octofit-tracker/frontend`
+- Logic tier: Express API service located in `octofit-tracker/backend`
 
 ## Current Failing Tests
-- A baseline failure in the user activity logging endpoint.
-- A database seed integration test failure.
+- Baseline test failure in user activity logging endpoint
+- Database seed integration test failure
 
 ## Smallest Safe Implementation Order
 1. Update the activity data model and seed script; validate the seed integration test.
