@@ -8,6 +8,7 @@ Completed with input: {
 ## Tier Boundaries
 - Presentation tier: React UI application located in `octofit-tracker/frontend`
 - Logic tier: Express API service located in `octofit-tracker/backend`
+- Data tier: Database and seed integration
 
 ## Current Failing Tests
 - Baseline test failure in user activity logging endpoint
