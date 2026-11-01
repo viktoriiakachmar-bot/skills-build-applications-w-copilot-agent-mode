@@ -29,16 +29,55 @@ export async function listTeams() {
   return Team.find().lean();
 }
 
-export async function createTeam(_input: unknown) {
-  throw Object.assign(new Error('Team validation is not implemented yet'), { status: 501 });
+export async function createTeam(input: unknown) {
+  const body = (input ?? {}) as Record<string, unknown>;
+  const { name, mascot } = body;
+  if (typeof name !== 'string' || !name.trim()) throw badRequest('name is required');
+  if (typeof mascot !== 'string' || !mascot.trim()) throw badRequest('mascot is required');
+  const members = body.members ?? [];
+  if (!Array.isArray(members) || !members.every((id) => typeof id === 'string' && isValidObjectId(id))) {
+    throw badRequest('members must be an array of valid ids');
+  }
+  if (members.length && (await User.countDocuments({ _id: { $in: members } })) !== new Set(members).size) {
+    throw badRequest('member not found', 404);
+  }
+  const team = await Team.create({ name: name.trim(), mascot: mascot.trim(), members });
+  return team.toObject();
 }
 
 export async function getLeaderboard() {
-  return [];
+  const totals = await Activity.aggregate<{ _id: unknown; totalPoints: number }>([
+    { $group: { _id: '$team', totalPoints: { $sum: '$points' } } },
+    { $sort: { totalPoints: -1, _id: 1 } },
+  ]);
+  const teams = await Team.find({ _id: { $in: totals.map((total) => total._id) } }).lean();
+  const names = new Map(teams.map((team) => [String(team._id), team.name]));
+  return totals.map((total, index) => ({
+    teamId: String(total._id),
+    teamName: names.get(String(total._id)) ?? 'Unknown team',
+    totalPoints: total.totalPoints,
+    rank: index + 1,
+  }));
 }
 
-export async function suggestWorkouts(_userEmail: string) {
-  return Workout.find().limit(1).lean();
+const strengthTypes = new Set(['strength', 'weights', 'lift']);
+
+export async function suggestWorkouts(userEmail: string) {
+  const user = await User.findOne({ email: userEmail.trim().toLowerCase() }).lean();
+  if (!user) throw badRequest('user not found', 404);
+  const activities = await Activity.find({ user: user._id }).lean();
+  const minutesByFocus = new Map<string, number>();
+  for (const activity of activities) {
+    const focus = strengthTypes.has(activity.type) ? 'strength' : 'endurance';
+    minutesByFocus.set(focus, (minutesByFocus.get(focus) ?? 0) + activity.minutes);
+  }
+  const [topFocus] = [...minutesByFocus.entries()].sort((left, right) => right[1] - left[1])[0] ?? [];
+  const focus = topFocus ?? user.fitnessGoal;
+  const reason = topFocus ? `Matches your recent ${topFocus} activity` : `Matches your ${focus} goal`;
+  const workouts = await Workout.find().sort({ title: 1 }).lean();
+  return workouts
+    .filter((workout) => workout.focus === focus)
+    .map((workout) => ({ ...workout, reason }));
 }
 
 export { User };
