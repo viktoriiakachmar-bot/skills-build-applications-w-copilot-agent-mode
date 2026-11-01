@@ -9,6 +9,7 @@
 - Activity tracking approach: Implement REST API endpoints for user activity logging.
 - Teams approach: Create backend routes and database schemas for teams management.
 - Workout suggestions approach: Add logic to generate personalized workout recommendations.
+- Leaderboard approach: Implement logic to calculate and display user rankings.
 
 ## Current Failing Tests
 - Baseline test failure in Activity tracking endpoint.
@@ -16,5 +17,5 @@
 
 ## Smallest Safe Implementation Order
 1. Update the activity data model and seed script; validate the seed integration test.
-2. Implement Activity tracking, Teams, and Workout suggestions routes; validate the endpoint tests.
+2. Implement Activity tracking, Teams, Leaderboard, and Workout suggestions routes; validate the endpoint tests.
 3. Connect frontend components to the shared API client with error handling.
