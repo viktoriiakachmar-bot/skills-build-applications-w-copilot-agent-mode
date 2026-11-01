@@ -11,5 +11,5 @@
 
 ## Smallest Safe Implementation Order
 1. Update the activity data model and seed script; validate the seed integration test.
-2. Implement Activity tracking, Teams, leaderboard, and workout-suggestion routes; validate the endpoint tests.
+2. Implement Activity tracking, Teams, leaderboard, and Workout suggestions routes; validate the endpoint tests.
 3. Connect frontend components to the shared API client with error handling.
