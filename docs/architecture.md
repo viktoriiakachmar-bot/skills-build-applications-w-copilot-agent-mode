@@ -16,6 +16,7 @@
 - Database seed integration test failure.
 - Run data tests: `npm run test:data --prefix octofit-tracker/backend`
 - Run API tests: `npm run test:api --prefix octofit-tracker/backend`
+- Run frontend tests: `npm test --prefix octofit-tracker/frontend`
 
 ## Smallest Safe Implementation Order
 1. Update the activity data model and seed script; validate the seed integration test.
